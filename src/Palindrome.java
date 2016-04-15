@@ -16,7 +16,7 @@ public class Palindrome {
      * @param pHead 输入的链表
      * @return 返回是否是回文
      */
-    public boolean isPalindrome(ListNode pHead) {
+    public boolean isPalindrome1(ListNode pHead) {
         Stack<Integer> stack = new Stack<>();
         ListNode fast = pHead;
         ListNode slow = pHead;
@@ -37,5 +37,74 @@ public class Palindrome {
             slow = slow.next;
         }
         return true;
+    }
+
+    /**
+     * 第二种实现，使用递归的方式进行回文判断，需要定义新的数据结构以支持递归
+     * @param pHead 输入的链表
+     * @return 返回是否是回文
+     */
+    public boolean isPalindrome(ListNode pHead) {
+        int len = getLength(pHead);
+        ListAndBoolean lab = recursive(pHead,len);
+        return lab.result;
+    }
+
+    /**
+     * 递归函数
+     * @param pHead 当前层的头
+     * @param len 当前层的节点个数
+     * @return 返回上一层位于链表后半部分的节点和里层是否为回文的组和类
+     */
+    private ListAndBoolean recursive(ListNode pHead, int len) {
+        if (pHead == null || len == 0) return new ListAndBoolean(null,true);
+
+        // len为1或2时，进入到最里层，len为1则表示链表的节点个数为奇数，len为2时链表的节点个数为偶数
+        if (len == 1){
+            return new ListAndBoolean(pHead.next, true);
+        }else if (len == 2){
+            return new ListAndBoolean(pHead.next.next, pHead.val == pHead.next.val);
+        }
+        ListAndBoolean lab = recursive(pHead.next, len - 2);
+        // 如果上层返回结果为false或者已经没有节点则直接返回该结果
+        if (!lab.result || lab.node == null) return lab;
+        // 应该返回上一层的属于后半的节点，应该当前获得返回结果的下一个节点
+        return new ListAndBoolean(lab.node.next, pHead.val == lab.node.val);
+    }
+
+    private int getLength(ListNode pHead) {
+        int count = 0;
+        while (pHead != null) {
+            count++;
+            pHead = pHead.next;
+        }
+        return count;
+    }
+
+    private class ListAndBoolean{
+        ListNode node;
+        boolean result;
+
+        public ListAndBoolean(ListNode node, boolean result){
+            this.node = node;
+            this.result = result;
+        }
+    }
+
+    public static void main(String[] args) {
+        ListNode head = new ListNode(1);
+        ListNode node = new ListNode(2);
+        node.next = head;
+        head = node;
+        node = new ListNode(3);
+        node.next = head;
+        head = node;
+        node = new ListNode(2);
+        node.next = head;
+        head = node;
+        node = new ListNode(1);
+        node.next = head;
+        head = node;
+        System.out.println(new Palindrome().isPalindrome(head));
     }
 }
