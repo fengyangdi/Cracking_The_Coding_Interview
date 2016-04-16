@@ -1,3 +1,6 @@
+/**
+ * 链表表示的两个整数的和（正序，1->2 = 12）
+ */
 public class LinkedListAdder {
 
     /**
