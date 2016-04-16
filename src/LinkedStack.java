@@ -13,7 +13,7 @@ public class LinkedStack<T> implements Iterable<T>{
        }
    }
 
-    private Node<T> head = new Node<T>(null);
+    private Node<T> head = new Node<>(null);
 
     public void push(T value){
         Node<T> node = new Node(value);
