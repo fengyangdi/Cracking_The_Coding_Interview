@@ -1,3 +1,6 @@
+/**
+ * 链表数据结构
+ */
 public class ListNode {
     int val;
     ListNode next = null;
