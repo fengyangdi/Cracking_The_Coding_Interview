@@ -2,6 +2,7 @@ import java.util.Iterator;
 
 /**
  * Created by GGM on 2016/3/30.
+ * 自定义链栈，带头节点
  */
 public class LinkedStack<T> implements Iterable<T>{
     private static class Node<T>{
