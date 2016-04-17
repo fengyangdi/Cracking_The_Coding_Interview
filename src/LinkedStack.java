@@ -40,6 +40,21 @@ public class LinkedStack<T> implements Iterable<T>{
     }
 
     @Override
+    public String toString() {
+        if (isEmpty()) return "[]";
+        else {
+            String result = "[";
+            Node<T> p = head.next;
+            while (p!=null){
+                result += p.item+",";
+                p = p.next;
+            }
+            result = result.substring(0,result.length()-1);
+            return result+"]";
+        }
+    }
+
+    @Override
     public Iterator<T> iterator() {
         return new Iterator<T>() {
 
