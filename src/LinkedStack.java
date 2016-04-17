@@ -28,6 +28,10 @@ public class LinkedStack<T> implements Iterable<T>{
         return p.item;
     }
 
+    public boolean isEmpty(){
+        return head.next == null;
+    }
+
     @Override
     public Iterator<T> iterator() {
         return new Iterator<T>() {
