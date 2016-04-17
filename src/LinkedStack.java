@@ -6,14 +6,14 @@ import java.util.Iterator;
  */
 public class LinkedStack<T> implements Iterable<T>{
     private static class Node<T>{
-       T item;
-       Node<T> next;
 
+        T item;
+        Node<T> next;
        public Node(T value){
            this.item = value;
        }
-   }
 
+    }
     private Node<T> head = new Node<>(null);
 
     public void push(T value){
@@ -26,6 +26,12 @@ public class LinkedStack<T> implements Iterable<T>{
         if (head.next == null) return null;
         Node<T> p = head.next;
         head.next = head.next.next;
+        return p.item;
+    }
+
+    public T peek() {
+        if (head.next == null) return null;
+        Node<T> p = head.next;
         return p.item;
     }
 
