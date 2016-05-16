@@ -9,12 +9,12 @@ public class CheckTreeIsBalance {
      * @param <T> 泛型参数
      * @return 是否平衡
      */
-    public static <T> boolean isBalance(Tree<T> root){
+    public static <T> boolean isBalance(GenericTreeNode<T> root){
         ReTurnType re = isBalanceRecursion(root);
         return re.isBalance;
     }
 
-    private static <T> ReTurnType isBalanceRecursion(Tree<T> root) {
+    private static <T> ReTurnType isBalanceRecursion(GenericTreeNode<T> root) {
         if (root == null) return new ReTurnType(true,0);
         ReTurnType left = isBalanceRecursion(root.left);
         ReTurnType right = isBalanceRecursion(root.rigth);
