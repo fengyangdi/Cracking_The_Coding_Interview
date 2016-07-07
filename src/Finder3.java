@@ -1,7 +1,6 @@
 /**
- * Created by 46392_000 on 2016/7/6.
+ * Created by 46392_000 on 2016/7/7.
  */
-
 public class Finder3 {
     public int findString(String[] str, int n, String x) {
         if (str == null || str.length <= 0 || n <= 0 || x == null) return -1;
@@ -72,6 +71,7 @@ public class Finder3 {
 
         }
 
+        if (str[mid].equals(x)) return mid;
         else if (str[mid].compareTo(x) < 0){
             return findBinary(str, mid + 1, right, x);
         }else {
@@ -79,10 +79,4 @@ public class Finder3 {
         }
 
     }
-
-    public static void main(String[] args) {
-        String[] str = {"","","","","B","JIKLPORFPLB","LELNRIRPIAF","LNKVIISCK","ORZUH","OZJCZRQVQOP","QNZZRPFJ","RMKZFB","ZGK"};
-        System.out.println(new Finder3().findString(str,str.length,"JIKLPORFPLB"));
-    }
-
 }
